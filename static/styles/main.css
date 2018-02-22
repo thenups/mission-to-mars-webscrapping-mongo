@@ -1,0 +1,70 @@
+/* -------- */
+/* Elements */
+/* -------- */
+
+h1 {
+    font-size: 52px;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+p {
+    font-size: 14px;
+    margin: 0;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+img.responsiveimg {
+    width: 100%;
+}
+
+div.hemispheres {
+    padding: 10px;
+    margin: 10px;
+    border: 2px solid #ccc;
+}
+div.centerContent {
+    display: inline-block;
+    float: left;
+    width: 50%;
+}
+
+@media (max-width: 720px) {
+    div.centerContent {
+        width: 100%;
+
+    }
+}
+
+.divpad {
+    margin-bottom: 30px;
+}
+
+.boldText {
+    font-weight: bold;
+}
+
+#weather {
+    padding: 10px;
+    border: 2px solid #ccc;
+    margin-bottom: 30px;
+}
+
+#hemisphereTitle {
+    padding-bottom: 5px;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 10px;
+}
