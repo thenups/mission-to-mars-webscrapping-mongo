@@ -146,22 +146,3 @@ def scrape():
     marsinfo['hemispheres'] = hemispherePhotos
 
     return marsinfo
-
-
-# post = scrape()
-#
-# pp = pprint.PrettyPrinter(indent=4)
-# pp.pprint(post)
-
-# # The default port used by MongoDB is 27017
-# # https://docs.mongodb.com/manual/reference/default-mongodb-port/
-# conn = 'mongodb://localhost:27017/'
-# client = pymongo.MongoClient(conn)
-#
-# # Define the database in Mongo
-# db = client.mars_db
-# # Declare the collection
-# collection = db.information
-#
-# post = scrape()
-# db.collection.insert_one(post)

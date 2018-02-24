@@ -6,6 +6,7 @@ mars_db = Flask(__name__)
 
 mongo = PyMongo(mars_db)
 
+
 @mars_db.route("/")
 def index():
     marsinfo = mongo.db.marsinfo.find_one()
