@@ -1,110 +1,106 @@
-# Unit 12 | Assignment - Web Visualization Dashboard (Lattitude)
+# Mission to Mars
 
-## Background
+![mission_to_mars](Images/mission_to_mars.jpg)
 
-Data is more powerful when we share it with others! Let's take what we've learned about HTML and CSS to create a dashboard showing off the analysis we've done.
 
-<img alt="Landing page large screen" src="images/landing-lg.png" width=600>
+In this assignment, you will build a web application that scrapes various websites for data related to the Mission to Mars and displays the information in a single HTML page. The following outlines what you need to do.
 
-## Lattitude - Latitude Analysis Dashboard with Attitude
+## Step 1 - Scraping
 
-For this homework we'll be creating a visualization dashboard website using visualizations we've created in a past assignment. Specifically, we'll be using the data from [HW06](../../HW06-WebAPIs).
+Complete your initial scraping using Jupyter Notebook, BeautifulSoup, Pandas, and Requests/Splinter.
 
-In building this dashboard, we'll create individual pages for each plot and a means by which we can navigate between them. These pages will contain the visualizations and their corresponding explanations. We'll also have a landing page, a page where we can see a comparison of all of the plots, and another page where we can view the data used to build them.
+* Create a Jupyter Notebook file called `mission_to_mars.ipynb` and use this to complete all of your scraping and analysis tasks. The following outlines what you need to scrape.
 
-### Website Requirements
+### NASA Mars News
 
-For reference, see the ["Screenshots" section](#screenshots) below.
+* Scrape the [NASA Mars News Site](https://mars.nasa.gov/news/) and collect the latest News Title and Paragragh Text. Assign the text to variables that you can reference later.
 
-The website must consist of 7 pages total, including:
+```python
+# Example:
+news_title = "NASA's Next Mars Mission to Investigate Interior of Red Planet"
 
-* A [landing page](#landing-page) containing:
-  * An explanation of the project.
-  * Links to each visualizations page.
-* Four [visualization pages](#visualization-pages), each with:
-  * A descriptive title and heading tag.
-  * The plot/visualization itself for the selected comparison.
-  * A paragraph describing the plot and its significance.
-* A ["Comparisons" page](#comparisons-page) that:
-  * Contains all of the visualizations on the same page so we can easily visually compare them.
-  * Uses a bootstrap grid for the visualizations.
-    * The grid must be two visualizations across on screens medium and larger, and 1 across on extra-small and small screens.
-* A ["Data" page](#data-page) that:
-  * Displays a responsive table containing the data used in the visualizations.
-    * The table must be a bootstrap table component.
-    * The data must come from exporting the `.csv` file as HTML, or converting it to HTML. You may use a csv-to-html table conversion tool, e.g. [ConvertCSV](http://www.convertcsv.com/csv-to-html.htm).
+news_p = "Preparation of NASA's next spacecraft to Mars, InSight, has ramped up this summer, on course for launch next May from Vandenberg Air Force Base in central California -- the first interplanetary launch in history from America's West Coast."
+```
 
-The website must, at the top of every page, have a navigation menu that:
+### JPL Mars Space Images - Featured Image
 
-* Has the name of the site on the left of the nav which allows users to return to the landing page from any page.
-* Contains a dropdown on the right of the navbar named "Plots" which provides links to each individual visualization page.
-* Provides two more links on the right: "Comparisons" which links to the comparisons page, and "Data" which links to the data page.
-* Is responsive (using media queries). The nav must have similar behavior as the screenshots ["Navigation Menu" section](#navigation-menu) (notice the background color change).
+* Visit the url for JPL's Featured Space Image [here](https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars).
 
-Finally, the website must be deployed to github pages.
+* Use splinter to navigate the site and find the image url for the current Featured Mars Image and assign the url string to a variable called `featured_image_url`.
 
-When finished, submit to BootcampSpot the links to 1) the deployed app and 2) the github repository.
+* Make sure to find the image url to the full size `.jpg` image.
 
-### Considerations
+* Make sure to save a complete url string for this image.
 
-* You may use the data from [HW06](../../HW06-WebAPIs) or choose another dataset. Alternatively, you may use the included [cities dataset](cities.csv) and pull the images from the [included notebook](WeatherPy.ipynb).
-* You must use bootstrap. This includes using the bootstrap `navbar` component for the header on every page, the bootstrap table component for the data page, and the bootstrap grid for responsiveness on the comparison page.
-* You must deploy your website to github pages, with the website working on a live, publicly accessible URL as a result.
-* Be sure to use a CSS media query for the navigation menu.
-* Be sure your website works at all window widths/sizes.
-* Feel free to take some liberty in the visual aspects, but keep the core functionality the same.
+```python
+# Example:
+featured_image_url = 'https://www.jpl.nasa.gov/spaceimages/images/largesize/PIA16225_hires.jpg'
+```
 
-### Bonuses
+### Mars Weather
 
-* Use a different dataset! The requirements above still hold, but make it your own.
-* Use a bootstrap theme to customize your website. You may use a tool like [Bootswatch](https://bootswatch.com/). Make it look snazzy, give it some attitude. If using this, be sure you also meet all of the requirements listed above.
-* Add extra visualizations! The more comparisons the better, right?
-* Use meaningful glyphicons next to links in the header.
-* Have visualization navigation on every visualizations page with an active state. See the screenshots below.
+* Visit the Mars Weather twitter account [here](https://twitter.com/marswxreport?lang=en) and scrape the latest Mars weather tweet from the page. Save the tweet text for the weather report as a variable called `mars_weather`.
 
-### Screenshots
+```python
+# Example:
+mars_weather = 'Sol 1801 (Aug 30, 2017), Sunny, high -21C/-5F, low -80C/-112F, pressure at 8.82 hPa, daylight 06:09-17:55'
+```
 
-This section contains screenshots of each page that must be built, at varying screen widths. These are a guide; you can meet the requirements without having the pages look exactly like the below images.
+### Mars Facts
 
-#### Landing page
+* Visit the Mars Facts webpage [here](http://space-facts.com/mars/) and use Pandas to scrape the table containing facts about the planet including Diameter, Mass, etc.
 
-Large screen:
-![Landing page large screen](images/landing-lg.png)
+* Use Pandas to convert the data to a HTML table string.
 
-Small screen:
-![Landing page small screen](images/landing-sm.png)
-￼
+### Mars Hemisperes
 
-#### Comparisons page
+* Visit the USGS Astrogeology site [here](https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars) to obtain high resolution images for each of Mar's hemispheres.
 
-Large screen:
-![comparison page large screen](images/comparison-lg.png)
+* You will need to click each of the links to the hemispheres in order to find the image url to the full resolution image.
 
-Small screen:
-![comparison page small screen](images/comparison-sm.png)
+* Save both the image url string for the full resolution hemipshere image, and the Hemisphere title containing the hemisphere name. Use a Python dictionary to store the data using the keys `img_url` and `title`.
 
-#### Data page
+* Append the dictionary with the image url string and the hemisphere title to a list. This list will contain one dictionary for each hemisphere.
 
-Large screen:
-![data page large screen](images/data-lg.png)
+```python
+# Example:
+hemisphere_image_urls = [
+    {"title": "Valles Marineris Hemisphere", "img_url": "..."},
+    {"title": "Cerberus Hemisphere", "img_url": "..."},
+    {"title": "Schiaparelli Hemisphere", "img_url": "..."},
+    {"title": "Syrtis Major Hemisphere", "img_url": "..."},
+]
+```
 
-Small screen:
-![data page small screen](images/data-sm.png)
+---
 
-#### Visualization pages
+## Step 2 - MongoDB and Flask Application
 
-You'll build four of these, one for each visualization. Here's an example of one:
+Use MongoDB with Flask templating to create a new HTML page that displays all of the information that was scraped from the URLs above.
 
-Large screen:
-![visualize page large screen](images/visualize-lg.png)
+* Start by converting your Jupyter notebook into a Python script called `scrape_mars.py` with a function called `scrape` that will execute all of your scraping code from above and return one Python dictionary containing all of the scraped data.
 
-Small screen:
-![visualize page small screen](images/visualize-sm.png)
+* Next, create a route called `/scrape` that will import your `scrape_mars.py` script and call your `scrape` function.
 
-#### Navigation menu
+  * Store the return value in Mongo as a Python dictionary.
 
-Large screen:
-![nav menu large screen](images/nav-lg.png)
+* Create a root route `/` that will query your Mongo database and pass the mars data into an HTML template to display the data.
 
-Small screen:
-![nav menu small screen](images/nav-sm.png)
+* Create a template HTML file called `index.html` that will take the mars data dictionary and display all of the data in the appropriate HTML elements. Use the following as a guide for what the final product should look like, but feel free to create your own design.
+
+![final_app_part1.png](Images/final_app_part1.png)
+![final_app_part2.png](Images/final_app_part2.png)
+
+---
+
+## Hints
+
+* Use splinter to navigate the sites when needed and BeautifulSoup to help find and parse out the necessary data.
+
+* Use Pymongo for CRUD applications for your database. For this homework, you can simply overwrite the existing document each time the `/scrape` url is visited and new data is obtained.
+
+* Use Bootstrap to structure your HTML template.
+
+## Copyright
+
+Coding Boot Camp © 2017. All Rights Reserved.
